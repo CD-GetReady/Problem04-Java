@@ -1,17 +1,24 @@
 package cd.get.ready.algorithms;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+
 
 public class DogWalker {
     public int numberOfWalksCalculator(int[] dogSizes){
-        
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < dogSizes.length; i++) 
+        Arrays.sort(dogSizes); // sort the array for easy coding
+        int numberOfWalks = 1; // assume that there is at least one dog that will be walked and it will take an hour
+        for (int i = 0; i < dogSizes.length-1;) //iterate through the array
         {
-            list.add(dogSizes[i]);
+            numberOfWalks++; //increase the number of the walks needed 
+            if (dogSizes[i] == dogSizes[i+1]) // if the elements next to each other are the same skip to the next two elements
+            {
+                i+=2;    
+            }
+            else  // if not only go to the next element 
+            {
+                i++;
+            }
         }
-        int numberOfWalks = list.size();
-        return numberOfWalks;
+        return numberOfWalks; // return the number of walks
     }
 }
